@@ -2,44 +2,33 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace API.Models
 {
-    public class Candidato
+    public class Conhecimento
     {
         [Key]
         public int id { get; set; }
 
         [Required]
-        public string nomeCompleto { get; set; }
+        [StringLength(120)]
+        [Index(IsUnique = true)]
+        [Column(TypeName = "VARCHAR")]
+        public string descricao { get; set; }
 
         [Required]
-        public string email { get; set; }
-
-        public string skype { get; set; }
-        public string phone { get; set; }
-        public string linkedIn { get; set; }
-        public string cidade { get; set; }
-        public string estado { get; set; }
-        public string portfolio { get; set; }
-        public string disponibilidadeTrabalho { get; set; }
-        public string melhorHorarioTrabalho { get; set; }
-        public decimal pretensaoSalario { get; set; }
-
         public DateTime dtHoraCadastro { get; set; }
 
-        public virtual List<CandidatoConhecimento> conhecimentos { get; set; }
-
-
-        public static Candidato getById(int id)
+        public static Conhecimento getById(int id)
         {
             try
             {
                 EasyDevContext context = new EasyDevContext();
 
-                return context.Candidatos.Find(id);
+                return context.Conhecimentos.Find(id);
             }
             catch (Exception)
             {
@@ -48,19 +37,16 @@ namespace API.Models
             }
         }
 
-        public static object getAll(string nome = "", string email = "")
+        public static object getAll(string descricao)
         {
             try
             {
                 EasyDevContext context = new EasyDevContext();
 
-                var objs = context.Candidatos.AsEnumerable();
+                var objs = context.Conhecimentos.AsEnumerable();
 
-                if (!string.IsNullOrEmpty(nome))
-                    objs = objs.Where(x => !string.IsNullOrEmpty(x.nomeCompleto) && x.nomeCompleto.IndexOf(nome, StringComparison.OrdinalIgnoreCase) >= 0);
-
-                if (!string.IsNullOrEmpty(email))
-                    objs = objs.Where(x => !string.IsNullOrEmpty(x.email) && x.email.IndexOf(email, StringComparison.OrdinalIgnoreCase) >= 0);
+                if (!string.IsNullOrEmpty(descricao))
+                    objs = objs.Where(x => !string.IsNullOrEmpty(x.descricao) && x.descricao.IndexOf(descricao, StringComparison.OrdinalIgnoreCase) >= 0);
 
                 return objs;
             }
@@ -71,20 +57,20 @@ namespace API.Models
             }
         }
 
-        public Candidato save()
+        public Conhecimento save()
         {
             try
             {
                 EasyDevContext context = new EasyDevContext();
-               
+
                 if (this.id == 0)
                 {
                     this.dtHoraCadastro = DateTime.Now;
-                    context.Candidatos.Add(this);
+                    context.Conhecimentos.Add(this);
                 }
                 else
                 {
-                    Candidato oldObj = context.Candidatos.Find(this.id);
+                    Conhecimento oldObj = context.Conhecimentos.Find(this.id);
                     if (oldObj == null)
                         throw new HttpException(404, "Registro não localizado.");
                     else
@@ -101,6 +87,5 @@ namespace API.Models
                 throw;
             }
         }
-        
     }
 }

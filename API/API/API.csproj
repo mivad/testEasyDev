@@ -183,6 +183,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Candidato.cs" />
+    <Compile Include="Models\CandidatoConhecimento.cs" />
+    <Compile Include="Models\Conhecimento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,8 @@ namespace API.Context
         }
 
         public DbSet<Candidato> Candidatos { get; set; }
+        public DbSet<Conhecimento> Conhecimentos { get; set; }
+        public DbSet<CandidatoConhecimento> CandidatoConhecimentos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
