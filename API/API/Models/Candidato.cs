@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +17,9 @@ namespace API.Models
         public string nomeCompleto { get; set; }
 
         [Required]
+        [StringLength(220)]
+        [Index(IsUnique = true)]
+        [Column(TypeName = "VARCHAR")]
         public string email { get; set; }
 
         public string skype { get; set; }
@@ -30,7 +34,7 @@ namespace API.Models
 
         public DateTime dtHoraCadastro { get; set; }
 
-        public virtual List<CandidatoConhecimento> conhecimentos { get; set; }
+        public virtual ICollection<CandidatoConhecimento> conhecimentos { get; set; }
 
 
         public static Candidato getById(int id)
@@ -71,19 +75,27 @@ namespace API.Models
             }
         }
 
-        public Candidato save()
+        public Candidato save(int id = 0)
         {
             try
             {
                 EasyDevContext context = new EasyDevContext();
-               
-                if (this.id == 0)
+
+                if (this.id == 0 && id == 0)
                 {
                     this.dtHoraCadastro = DateTime.Now;
+
+                    foreach (var item in this.conhecimentos)
+                    {
+                        item.dtHoraCadastro = DateTime.Now;
+                    }
                     context.Candidatos.Add(this);
                 }
                 else
                 {
+                    if (this.id != id)
+                        throw new HttpException(404, "id do registro difere do id passado como parâmetro");
+
                     Candidato oldObj = context.Candidatos.Find(this.id);
                     if (oldObj == null)
                         throw new HttpException(404, "Registro não localizado.");
@@ -101,6 +113,6 @@ namespace API.Models
                 throw;
             }
         }
-        
+
     }
 }

@@ -82,7 +82,37 @@ namespace API.Migrations
                 new CandidatoConhecimento{id=10,candidatoId = 2, conhecimentoId = 10, valor = 5,  dtHoraCadastro = DateTime.Now},
             };
 
-            candidatoConhecimentos.ForEach(s => context.CandidatoConhecimentos.AddOrUpdate(s));
+
+
+            var candidatosComConhecimentos = new List<Candidato>
+            {
+                new Candidato
+                {
+                            id = 3,
+                            nomeCompleto ="Hormer Simpson",
+                            email ="hormer@email.com",
+                            dtHoraCadastro = DateTime.Now,
+                            conhecimentos = new List<CandidatoConhecimento>
+                            {
+                                new CandidatoConhecimento{conhecimentoId=11, valor = 4,  dtHoraCadastro = DateTime.Now},
+                                new CandidatoConhecimento{conhecimentoId=14, valor = 4,  dtHoraCadastro = DateTime.Now}
+                            }
+                },
+                new Candidato
+                {
+                            id = 4,
+                            nomeCompleto ="Marge Simpson",
+                            email ="marge@email.com",
+                            dtHoraCadastro = DateTime.Now,
+                            conhecimentos = new List<CandidatoConhecimento>
+                            {
+                                new CandidatoConhecimento{conhecimentoId=1, valor = 2,  dtHoraCadastro = DateTime.Now},
+                                new CandidatoConhecimento{conhecimentoId=2, valor = 0,  dtHoraCadastro = DateTime.Now}
+                            }
+                }
+            };
+
+            candidatosComConhecimentos.ForEach(s => context.Candidatos.AddOrUpdate(s));
             context.SaveChanges();
         }
     }

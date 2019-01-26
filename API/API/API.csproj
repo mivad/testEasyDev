@@ -168,18 +168,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Context\EasyDevContext.cs" />
+    <Compile Include="Controllers\CandidatosController.cs" />
+    <Compile Include="Controllers\ConhecimentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901260842233_InitialCreate.cs" />
-    <Compile Include="Migrations\201901260842233_InitialCreate.Designer.cs">
-      <DependentUpon>201901260842233_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901260915289_InitialCreate1.cs" />
-    <Compile Include="Migrations\201901260915289_InitialCreate1.Designer.cs">
-      <DependentUpon>201901260915289_InitialCreate1.cs</DependentUpon>
+    <Compile Include="Migrations\201901262226376_Inicial.cs" />
+    <Compile Include="Migrations\201901262226376_Inicial.Designer.cs">
+      <DependentUpon>201901262226376_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Candidato.cs" />
@@ -271,11 +269,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901260842233_InitialCreate.resx">
-      <DependentUpon>201901260842233_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901260915289_InitialCreate1.resx">
-      <DependentUpon>201901260915289_InitialCreate1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901262226376_Inicial.resx">
+      <DependentUpon>201901262226376_Inicial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

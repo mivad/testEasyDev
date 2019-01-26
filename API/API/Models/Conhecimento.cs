@@ -37,7 +37,7 @@ namespace API.Models
             }
         }
 
-        public static object getAll(string descricao)
+        public static object getAll(string descricao = "")
         {
             try
             {
@@ -57,20 +57,23 @@ namespace API.Models
             }
         }
 
-        public Conhecimento save()
+        public Conhecimento save(int id = 0)
         {
             try
             {
                 EasyDevContext context = new EasyDevContext();
 
-                if (this.id == 0)
+                if (this.id == 0 && id == 0)
                 {
                     this.dtHoraCadastro = DateTime.Now;
                     context.Conhecimentos.Add(this);
                 }
                 else
                 {
-                    Conhecimento oldObj = context.Conhecimentos.Find(this.id);
+                    if (this.id != id)
+                        throw new HttpException(404, "id do registro difere do id passado como parâmetro");
+
+                        Conhecimento oldObj = context.Conhecimentos.Find(this.id);
                     if (oldObj == null)
                         throw new HttpException(404, "Registro não localizado.");
                     else
@@ -87,5 +90,6 @@ namespace API.Models
                 throw;
             }
         }
+
     }
 }
