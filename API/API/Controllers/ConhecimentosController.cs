@@ -5,9 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ConhecimentosController : ApiController
     {
         [HttpGet]
@@ -32,6 +34,12 @@ namespace API.Controllers
         public object Alterar(int id, [FromBody]Conhecimento item)
         {
             return item.save(id);
+        }
+
+        [HttpDelete]
+        public void Excluir(int id)
+        {
+            Conhecimento.delete(id);
         }
     }
 }

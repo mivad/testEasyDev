@@ -91,5 +91,27 @@ namespace API.Models
             }
         }
 
+
+        public static void delete(int id)
+        {
+            try
+            {
+                EasyDevContext context = new EasyDevContext();
+
+                var obj = context.Conhecimentos.Find(id);
+
+                if (obj == null)
+                    throw new HttpException(400, "Registro não localizado.");
+
+                context.Conhecimentos.Remove(obj);
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }
