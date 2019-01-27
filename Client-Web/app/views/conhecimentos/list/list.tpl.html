@@ -1,0 +1,54 @@
+<h5>
+	Conhecimentos
+</h5>
+
+<div class="progress" ng-show="loading.pesquisando">
+  	<div class="indeterminate"></div>
+</div>
+
+<div ng-show="!loading.pesquisando && conhecimentos.length > 0">
+	<div class="row">
+	  	<div class="input-field col s12">
+		    <i class="material-icons prefix">search</i>
+		    <input id="icon_prefix" type="text" ng-model="query">
+		    <label for="icon_prefix" class="">Filtrar</label>
+	  	</div>
+
+		<table class="highlight">
+		    <thead>
+		      <tr>
+		          <th>ID</th>
+		          <th>Descrição</th>
+		          <th class="center-align" style="width: 160px !important;">#</th>
+		      </tr>
+		    </thead>
+
+		    <tbody>
+		      <tr ng-repeat="item in conhecimentos | filter:query | orderBy:'descricao'">
+		        <td>{{item.id}}</td>
+		        <td>{{item.descricao}}</td>
+		        <td class="center-align">
+		        	<a class="waves-effect waves-light btn-small teal darken-1" title="Editar" href="#!Conhecimentos/Conhecimento/{{item.id}}">
+		        		<i class="material-icons">edit</i>
+		        	</a>
+		        	<a class="waves-effect waves-light btn-small red darken-1" title="Excluir" ng-click="openModal(item)">
+		        		<i class="material-icons">delete</i>
+		        	</a>
+		        </td>
+		      </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>
+
+<div ng-show="!loading.pesquisando && conhecimentos.length == 0">
+	<p>Nenhum registro foi localizado para essa pesquisa.</p>
+</div>
+
+<div class="fixed-action-btn" title="Cadastrar">
+	<a class="btn-floating btn-large waves-effect waves-light light-teal darken-4" href="#!Conhecimentos/Conhecimento">
+		<i class="material-icons">add</i>
+	</a>
+</div>
+
+  <div ng-include="'app/views/conhecimentos/list/remove.tpl.html'"></div>

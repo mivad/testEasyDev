@@ -1,0 +1,47 @@
+<div class="row ">
+	<div class="col s12">
+		<a class="waves-effect btn-flat  light-green lighten-5" href="#!Conhecimentos">
+			<i class="material-icons left">arrow_back</i>
+		</a>
+	</div>
+	<div class="col s12">
+		<h5>
+			Conhecimentos - 
+			<span ng-show="!loading.carregando && objSelecionado.id == 0">Cadastrar</span>
+			<span ng-show="!loading.carregando && objSelecionado.id > 0">Editar</span>
+		</h5>
+	</div>
+</div>
+
+<div class="progress" ng-show="loading.carregando">
+  	<div class="indeterminate"></div>
+</div>
+
+<form  ng-show="!loading.carregando">
+
+	<div class="row" ng-show="objSelecionado.id > 0">
+ 		<div class="input-field col s12">
+	        <input disabled="" value="{{objSelecionado.id}}" id="disabled" type="text" class="validate">
+	        <label for="disabled" class="active">ID</label>
+      	</div>
+	</div>
+	
+	<div class="row">
+	  <div class="input-field col s12">
+        <input 	placeholder="Descrição" id="txtDescricao" type="text" class="validate" 
+        		required="" ng-model="objSelecionado.descricao">
+        <label for="txtDescricao" class="active">Descrição</label>
+      </div>
+	</div>
+	<div class="row">
+	  	<div class="input-field col s12 right-align">
+			<a class="waves-effect waves-light btn" ng-click="salvar()" ng-show="!loading.salvando">Salvar</a>
+
+			<div class="progress" ng-show="loading.salvando">
+			  	<div class="indeterminate"></div>
+			</div>
+		</div>
+	</div>
+
+
+</form>

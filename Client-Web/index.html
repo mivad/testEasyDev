@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="css/ng-animation.css" rel="stylesheet">
+
+
+</head>
+<body ng-app="EasyDevApp" ng-controller="MainCtrl" layout="column" style="height:500px;" ng-cloak>
+  
+    <div ng-include="'app/templates/menu/menu.tpl.html'"></div>
+
+    <div class="container">
+      <div class="section">
+         <div ng-view class="slide-left" ng-class="animation"></div>
+      </div>
+    </div>
+
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ 
+
+
+  <script src="js/app.js"></script>
+  <script src="js/app.config.js"></script>
+
+
+
+  <!-- Models -->
+  <script src="app/models/conhecimento.model.js"></script>
+
+
+  <!-- Controllers -->
+  <script src="js/main.controller.js"></script>
+  <script src="app/templates/menu/menu.controller.js"></script>
+  <script src="app/views/conhecimentos/list/list.controller.js"></script>
+  <script src="app/views/conhecimentos/form/form.controller.js"></script>
+  <script src="app/views/candidatos/list/list.controller.js"></script>
+
+  <script type="text/javascript">
+    
+  (function($){
+    $(function(){
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.sidenav, .modal');
+        var instances = M.Sidenav.init(elems, options);
+      });
+        
+      $('.sidenav').sidenav();
+
+    }); // end of document ready
+  })(jQuery); // end of jQuery name space
+
+ 
+
+  </script>
+
+</body>
+</html>

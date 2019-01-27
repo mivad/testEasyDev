@@ -1,0 +1,20 @@
+  <nav class="teal darker-1" role="navigation" ng-controller="MenuCtrl">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo ">Easy Dev</a>
+     
+    <ul class="right hide-on-med-and-down"> 
+       <!-- <ul class="right ">-->
+
+        <li ng-class="{'active' : current.name == 'conhecimentos'}"><a href="#!Conhecimentos">Conhecimentos</a></li>
+        <li ng-class="{'active' : current.name == 'candidatos'}"><a href="#!Candidatos" >Candidatos</a></li>
+      </ul>
+
+      
+      <ul id="nav-mobile" class="sidenav">
+        <li ng-class="{'active' : current.name == 'conhecimentos'}"><a href="#!Conhecimentos">Conhecimentos</a></li>
+        <li ng-class="{'active' : current.name == 'candidatos'}"><a href="#!Candidatos" >Candidatos</a></li>
+      </ul>
+      <a ng-click="openNavMobile()" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+   
+    </div>
+  </nav>
