@@ -1,0 +1,17 @@
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Deseja realmente remover esse registro?</h4>
+      <p>{{objSelecionado.id}}</p>
+      <p>{{objSelecionado.nomeCompleto}}</p>
+      <p>{{objSelecionado.email}}</p>
+    </div>
+    <div class="modal-footer" ng-show="!loading.excluindo">
+      <a  class="waves-effect waves-light btn red darken-1" ng-click="excluir()">Sim, excluir!</a>
+      <a  class="modal-close waves-effect waves-green btn-flat" ng-click="openModal(false)">Cancelar</a>
+    </div>
+    <div class="modal-footer" ng-show="loading.excluindo">
+    	<div class="progress">
+			  	<div class="indeterminate"></div>
+		</div>
+	</div>
+</div>
