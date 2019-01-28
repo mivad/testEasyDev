@@ -24,8 +24,8 @@ namespace API.Migrations
 
             var candidatos = new List<Candidato>
             {
-                new Candidato{id=1,nomeCompleto="Bart Simpson", email="bart@email.com", dtHoraCadastro = DateTime.Now},
-                new Candidato{id=2,nomeCompleto="Lisa Simpson", email="lisa@email.com", dtHoraCadastro = DateTime.Now}
+                new Candidato{id=1,nomeCompleto="Bart Simpson", email="bart@email.com", dtHoraCadastro = DateTime.Now, horasAteQuatro = true, periodoManha = true},
+                new Candidato{id=2,nomeCompleto="Lisa Simpson", email="lisa@email.com", dtHoraCadastro = DateTime.Now, horasFimDeSemana = true, periodoNoite = true}
             };
 
             candidatos.ForEach(s => context.Candidatos.AddOrUpdate(s));
@@ -91,6 +91,8 @@ namespace API.Migrations
                             id = 3,
                             nomeCompleto ="Hormer Simpson",
                             email ="hormer@email.com",
+                            horasFimDeSemana = true,
+                            periodoNoite = true,
                             dtHoraCadastro = DateTime.Now,
                             conhecimentos = new List<CandidatoConhecimento>
                             {
@@ -103,6 +105,8 @@ namespace API.Migrations
                             id = 4,
                             nomeCompleto ="Marge Simpson",
                             email ="marge@email.com",
+                            horasSeisAOito = true,
+                            periodoTarde = true,
                             dtHoraCadastro = DateTime.Now,
                             conhecimentos = new List<CandidatoConhecimento>
                             {

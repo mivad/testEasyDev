@@ -4,13 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="css/ng-animation.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.css">
 
+  <link rel="stylesheet" href="css/ng-animation.css" >
+  <link rel="stylesheet" href="css/custom.css" >
 
 </head>
-<body ng-app="EasyDevApp" ng-controller="MainCtrl" layout="column" style="height:500px;" ng-cloak>
+<body ng-app="EasyDevApp" ng-controller="MainCtrl" layout="column"  ng-cloak>
   
     <div ng-include="'app/templates/menu/menu.tpl.html'"></div>
 
@@ -30,7 +32,14 @@
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
- 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.6.1/rzslider.min.js"></script>
+
+
+
+
+  
+
 
 
   <script src="js/app.js"></script>
@@ -40,14 +49,20 @@
 
   <!-- Models -->
   <script src="app/models/conhecimento.model.js"></script>
+  <script src="app/models/candidato.model.js"></script>
+
 
 
   <!-- Controllers -->
   <script src="js/main.controller.js"></script>
   <script src="app/templates/menu/menu.controller.js"></script>
+
   <script src="app/views/conhecimentos/list/list.controller.js"></script>
   <script src="app/views/conhecimentos/form/form.controller.js"></script>
+
   <script src="app/views/candidatos/list/list.controller.js"></script>
+  <script src="app/views/candidatos/form/form.controller.js"></script>
+
 
   <script type="text/javascript">
     
@@ -55,7 +70,7 @@
     $(function(){
 
       document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav, .modal');
+        var elems = document.querySelectorAll('.sidenav, .modal, .tooltipped');
         var instances = M.Sidenav.init(elems, options);
       });
         

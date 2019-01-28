@@ -1,3 +1,65 @@
-<div>
-	<p>Candidatos</p>
+<h5>
+	Candidatos
+</h5>
+
+<div class="progress" ng-show="loading.pesquisando">
+  	<div class="indeterminate"></div>
 </div>
+
+<div ng-show="!loading.pesquisando && candidatos.length > 0">
+	<div class="row">
+	  	<div class="input-field col s6">
+		    <i class="material-icons prefix">search</i>
+		    <input id="txtQueryNome" type="text" ng-model="query.nome">
+		    <label for="txtQueryNome" class="">Nome</label>
+	  	</div>
+
+	  	<div class="input-field col s6">
+		    <input id="txtQueryEmail" type="text" ng-model="query.email">
+		    <label for="txtQueryEmail" class="">Email</label>
+	  	</div>
+
+
+		<table class="highlight">
+		    <thead>
+		      <tr>
+		          <th>ID</th>
+		          <th>Nome</th>
+		          <th>Email</th>
+		          <th class="hide-on-med-and-down">Dt. Cadastro</th>
+
+		          <th class="center-align w-160">#</th>
+		      </tr>
+		    </thead>
+
+		    <tbody>
+		      <tr ng-repeat="item in candidatos | orderBy:'nomeCompleto'">
+		        <td>{{item.id}}</td>
+		        <td>{{item.nomeCompleto}}</td>
+		        <td>{{item.email}}</td>
+		        <td class="hide-on-med-and-down">{{item.dtHoraCadastro | date: 'dd/MM/yyyy HH:mm'}}</td>
+		        <td class="center-align">
+		        	<a class="waves-effect waves-light btn-small teal darken-1" title="Editar" href="#!Candidatos/Candidato/{{item.id}}">
+		        		<i class="material-icons">edit</i>
+		        	</a>
+		        	<a class="waves-effect waves-light btn-small red darken-1" title="Excluir" ng-click="openModal(item)">
+		        		<i class="material-icons">delete</i>
+		        	</a>
+		        </td>
+		      </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>
+
+<div ng-show="!loading.pesquisando && conhecimentos.length == 0">
+	<p>Nenhum registro foi localizado para essa pesquisa.</p>
+</div>
+
+<div class="fixed-action-btn" title="Cadastrar">
+	<a class="btn-floating btn-large waves-effect waves-light light-teal darken-4" href="#!Candidatos/Candidato">
+		<i class="material-icons">add</i>
+	</a>
+</div>
+
+  <div ng-include="'app/views/conhecimentos/list/remove.tpl.html'"></div>

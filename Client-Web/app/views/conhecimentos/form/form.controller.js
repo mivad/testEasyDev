@@ -4,6 +4,7 @@ easyDevApp.controller('ConhecimentoCtrl', function($scope, $routeParams, $locati
 $scope.loading = {carregando: false, salvando:false}
 $scope.objSelecionado = {id:0}
 
+
 //Functions
 $scope.salvar = salvar
 

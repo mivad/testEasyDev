@@ -21,7 +21,9 @@ namespace API.Models
         [Index(IsUnique = true)]
         [Column(TypeName = "VARCHAR")]
         public string email { get; set; }
+        public string conhecimentoOutros { get; set; }
 
+        
         public string skype { get; set; }
         public string phone { get; set; }
         public string linkedIn { get; set; }
@@ -30,7 +32,19 @@ namespace API.Models
         public string portfolio { get; set; }
         public string disponibilidadeTrabalho { get; set; }
         public string melhorHorarioTrabalho { get; set; }
-        public decimal pretensaoSalario { get; set; }
+        public decimal? pretensaoSalario { get; set; }
+
+        public bool horasAteQuatro { get; set; }
+        public bool horasQuatroASeis { get; set; }
+        public bool horasSeisAOito { get; set; }
+        public bool horasAcimaDeOito { get; set; }
+        public bool horasFimDeSemana { get; set; }
+        public bool periodoManha { get; set; }
+        public bool periodoTarde { get; set; }
+        public bool periodoNoite { get; set; }
+        public bool periodoMadrugada { get; set; }
+        public bool periodoComercial { get; set; }
+
 
         public DateTime dtHoraCadastro { get; set; }
 
@@ -85,11 +99,14 @@ namespace API.Models
                 {
                     this.dtHoraCadastro = DateTime.Now;
 
-                    foreach (var item in this.conhecimentos)
-                    {
-                        item.dtHoraCadastro = DateTime.Now;
-                    }
+                    var conhecimentos = new List<CandidatoConhecimento>(this.conhecimentos);
+                    this.conhecimentos = null;
+                   
                     context.Candidatos.Add(this);
+
+                    context.SaveChanges();
+
+                    CandidatoConhecimento.save(this.id, conhecimentos);
                 }
                 else
                 {
@@ -101,9 +118,14 @@ namespace API.Models
                         throw new HttpException(404, "Registro não localizado.");
                     else
                         context.Entry(oldObj).CurrentValues.SetValues(this);
-                }
 
-                context.SaveChanges();
+                    foreach (var candidatoConhecimento in this.conhecimentos)
+                    {
+                        candidatoConhecimento.save(candidatoConhecimento.id);
+                    }
+
+                    context.SaveChanges();
+                }
 
                 return this;
             }
