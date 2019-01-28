@@ -35,5 +35,13 @@ namespace API.Controllers
         {
             return item.save(id);
         }
+
+        [HttpDelete]
+        public void Excluir(int id)
+        {
+            Candidato.delete(id);
+        }
     }
+
+     
 }
