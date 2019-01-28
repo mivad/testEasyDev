@@ -1,12 +1,15 @@
-easyDevApp.controller('CandidatoCtrl', function($scope, $routeParams, $location, $filter, Candidato, Conhecimento) {
+easyDevApp.controller('CandidatoCtrl', function($scope, $routeParams, $location, $filter, $translate, Candidato, Conhecimento) {
 
 //Vars
-$scope.loading = {carregando: false, salvando:false}
+$scope.loading = {carregando: false, salvando:false, conhecimentos:true}
 $scope.objSelecionado = {id:0, conhecimentos:[]}
 $scope.conhecimentos = []
+$scope.linguagens = [{key:'Português', value:'pt-br'},{key:'English', value:'en'}]
+$scope.linguagem = {selecionada:{value:'pt-br'}}
 
 //Functions
 $scope.salvar = salvar
+$scope.onChangeLinguagem = onChangeLinguagem
 
 function carregarForm() {
 	$scope.loading.carregando = true;
@@ -23,6 +26,9 @@ function carregarForm() {
 
 function salvar()
 {
+	if(!validarForm())
+		return;
+
 	$scope.loading.salvando = true;
 	Candidato.salvar($scope.objSelecionado).then(function (response)
 	{	
@@ -40,6 +46,7 @@ function salvar()
 
 function getConhecimentos()
 {
+	$scope.loading.conhecimentos = true;
 	Conhecimento.getAll()
 	.then(function (response) {
 		response.data.forEach(function (x) {
@@ -49,7 +56,7 @@ function getConhecimentos()
 	.catch(function (response) {
 	  M.toast({html: 'Erro:' + response.status})
 	})
-	.finally(function () {$scope.loading.pesquisando = false; setConhecimentos();});
+	.finally(function () {$scope.loading.conhecimentos = false; setConhecimentos();});
 }
 
 function setConhecimentos() {
@@ -71,6 +78,11 @@ function setConhecimentos() {
 	})
 }
 
+function onChangeLinguagem()
+{
+    $translate.use($scope.linguagem.selecionada.value);
+}
+
 function init() {
 	getConhecimentos();
 
@@ -78,7 +90,19 @@ function init() {
 		carregarForm();
 }
 
-
+function  validarForm() {
+	if(!$scope.objSelecionado.nomeCompleto || $scope.objSelecionado.nomeCompleto.length == 0)
+	{
+	 	M.toast({html: $translate.instant('FORM_NOME')})
+		return false;
+	}
+	else if(!$scope.objSelecionado.email || $scope.objSelecionado.email.length == 0)
+	{
+	 	M.toast({html: 'Email'})
+		return false;
+	}
+	return true;
+}
 
 
 setTimeout(() => init(), 10);

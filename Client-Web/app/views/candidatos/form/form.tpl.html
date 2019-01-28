@@ -6,9 +6,10 @@
 	</div>
 	<div class="col s12">
 		<h5>
-			Candidato - 
-			<span ng-show="!loading.carregando && objSelecionado.id == 0">Cadastrar</span>
-			<span ng-show="!loading.carregando && objSelecionado.id > 0">Editar</span>
+			<span translate="FORM_CANDIDATO"></span>
+			<span>-</span>
+			<span ng-show="!loading.carregando && objSelecionado.id == 0" translate="FORM_CADASTRAR"></span>
+			<span ng-show="!loading.carregando && objSelecionado.id > 0" translate="FORM_EDITAR"></span>
 		</h5>
 	</div>
 </div>
@@ -18,6 +19,14 @@
 </div>
 
 <form  ng-show="!loading.carregando">
+
+	<div class="row">
+		<div class="col s12 m6">
+            <label translate="FORM_LINGUAGEM"></label>
+            <select class="browser-default" ng-options="linguagem as linguagem.key for linguagem in linguagens track by linguagem.value" ng-model="linguagem.selecionada" ng-change="onChangeLinguagem()">
+            </select>
+      	</div>
+	</div>
 
 	<div class="row" ng-show="objSelecionado.id > 0">
  		<div class="input-field col s12">
@@ -29,22 +38,22 @@
 	
 	<div class="row">
 	  <div class="input-field col s6">
-        <input 	placeholder="Nome Completo" id="txtNomeCompleto" type="text" class="validate" 
+        <input 	placeholder="{{ 'FORM_NOME' | translate }}" id="txtNomeCompleto" type="text" class="validate" 
         		required="" ng-model="objSelecionado.nomeCompleto">
-        <label for="txtNomeCompleto" class="active">Nome Completo *</label>
+        <label for="txtNomeCompleto" class="active"> {{ 'FORM_NOME' | translate}} *</label>
       </div>
       <div class="input-field col s6">
         <input 	placeholder="Email" id="txtEmail" type="email" class="validate" 
         		required="" ng-model="objSelecionado.email">
-        <label for="txtEmail" class="active">Email *</label>
+        <label for="txtEmail" class="active">Email </label>
       </div>
 	</div>
 
 	<div class="row">
 		<div class="input-field col s4">
-			<input 	placeholder="Telefone" id="txtTelefone" type="text" 
+			<input 	placeholder="{{ 'FORM_TELEFONE' | translate}}" id="txtTelefone" type="text" 
 					required class="validate" ng-model="objSelecionado.phone">
-			<label for="txtTelefone" class="active">Telefone *</label>
+			<label for="txtTelefone" class="active">{{ 'FORM_TELEFONE' | translate}} *</label>
 		</div>
 		<div class="input-field col s4">
 			<input 	placeholder="Skype" id="txtSkype" type="text" class="validate" ng-model="objSelecionado.skype">
@@ -58,57 +67,55 @@
 
 	<div class="row">
 	  <div class="input-field col s6">
-        <input 	placeholder="Cidade" id="txtCidade" type="text" class="validate" ng-model="objSelecionado.cidade">
-        <label for="txtCidade" class="active">Cidade *</label>
+        <input 	placeholder="{{ 'FORM_CIDADE' | translate}}" id="txtCidade" type="text" class="validate" ng-model="objSelecionado.cidade">
+        <label for="txtCidade" class="active">{{ 'FORM_CIDADE' | translate}} *</label>
       </div>
       <div class="input-field col s6">
-        <input 	placeholder="Estado" id="txtEstado" type="text" 
+        <input 	placeholder="{{ 'FORM_ESTADO' | translate}}" id="txtEstado" type="text" 
         		required class="validate" ng-model="objSelecionado.estado">
-        <label for="txtEstado" class="active">Estado *</label>
+        <label for="txtEstado" class="active">{{ 'FORM_ESTADO' | translate}} *</label>
       </div>
 	</div>
 
 	<div class="row">
 	  <div class="input-field col s12">
-        <input 	placeholder="Portfolio" id="txtPortfolio" type="text" class="validate" ng-model="objSelecionado.portfolio">
-        <label for="txtPortfolio" class="active">Portfolio</label>
+        <input 	placeholder="{{ 'FORM_PORTIFOLIO' | translate}}" id="txtPortfolio" type="text" class="validate" ng-model="objSelecionado.portfolio">
+        <label for="txtPortfolio" class="active">{{ 'FORM_PORTIFOLIO' | translate}}</label>
       </div>
 	</div>
 
 	<div class="row">
-		<div class="input-field col s12 h6">
-			What is your willingness to work today? / Qual é sua disponibilidade para trabalhar hoje?
-		</div>
+		<div class="input-field col s12 h6" translate="FORM_Q1"></div>
 
 		<div class="input-field col s12 m-t-0">
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.horasAteQuatro" />
-		        <span>Up to 4 hours per day / Até 4 horas por dia</span>
+		        <span translate="FORM_Q1_ATE4"></span>
 		      </label>
 		    </p>
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.horasQuatroASeis" />
-		        <span>4 to 6 hours per day / De 4 á 6 horas por dia</span>
+		        <span translate="FORM_Q1_ATE6"></span>
 		      </label>
 		    </p>
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.horasSeisAOito" />
-		        <span>6 to 8 hours per day /De 6 á 8 horas por dia</span>
+		        <span translate="FORM_Q1_ATE8"></span>
 		      </label>
 		    </p>
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.horasAcimaDeOito" />
-		        <span>Up to 8 hours a day (are you sure?) / Acima de 8 horas por dia (tem certeza?)</span>
+		        <span translate="FORM_Q1_MAIS8"></span>
 		      </label>
 		    </p>
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.horasFimDeSemana" />
-		        <span>Only weekends / Apenas finais de semana</span>
+		        <span translate="FORM_Q1_SOFDS"></span>
 		      </label>
 		    </p>
 	    </div>
@@ -116,60 +123,58 @@
 
 
 	<div class="row">
-		<div class="input-field col s12 h6">
-			What's the best time to work for you? / Pra você qual é o melhor horário para trabalhar?
-		</div>
+		<div class="input-field col s12 h6" translate="FORM_Q2"></div>
 
 		<div class="input-field col s12 m-t-0">
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.periodoManha" />
-		        <span>Morning (from 08:00 to 12:00) / Manhã (de 08:00 ás 12:00)</span>
+		        <span translate="FORM_Q2_MANHA"></span>
 		      </label>
 		    </p>
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.periodoTarde" />
-		        <span>Afternoon (from 1:00 p.m. to 6:00 p.m.) / Tarde (de 13:00 ás 18:00)</span>
+		        <span translate="FORM_Q2_TARDE"></span>
 		      </label>
 		    </p>
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.periodoNoite" />
-		        <span>Night (7:00 p.m. to 10:00 p.m.) /Noite (de 19:00 as 22:00)</span>
+		        <span translate="FORM_Q2_NOITE"></span>
 		      </label>
 		    </p>
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.periodoMadrugada" />
-		        <span>Dawn (from 10 p.m. onwards) / Madrugada (de 22:00 em diante)</span>
+		        <span translate="FORM_Q2_MADRUDAGA"></span>
 		      </label>
 		    </p>
 		    <p>
 		      <label>
 		        <input type="checkbox" ng-model="objSelecionado.periodoComercial" />
-		        <span>Business (from 08:00 a.m. to 06:00 p.m.) / Comercial (de 08:00 as 18:00)</span>
+		        <span translate="FORM_Q2_COMERCIAL"></span>
 		      </label>
 		    </p>
 	    </div>
 	</div>
 
 	<div class="row">
-		<div class="input-field col s12 h6 m-b-0">
-			What is your hourly salary requirements? / Qual sua pretensão salarial por hora? *
-		</div>
-	 	<div class="input-field col s12 m-t-0">
+		<div class="input-field col s12 h6 m-b-0" translate="FORM_Q3_SALARIO"></div>
+	 	<div class="input-field col s2 m-t-0">
         	<input 	type="number" class="validate" required="" ng-model="objSelecionado.pretensaoSalario">
       	</div>
 	</div>
 
 
 	<div class="row">
-		<div class="col s12">
-			Rate yourself from 0 to 5 for the knowledge specified below, and that's okay if you do not know many things, the important thing is to be honest! / Avalie-se de 0 a 5 quanto aos conhecimentos especificados abaixo, e tudo bem se não souber de muitas coisas, o importante é que seja sincero!
-		</div>
+		<div class="col s12" translate="FORM_Q4_CONHECIMENTOS"></div>
 	</div>
 
+
+<div class="progress" ng-show="loading.conhecimentos">
+  	<div class="indeterminate"></div>
+</div>
 
 	<div ng-repeat="item in objSelecionado.conhecimentos | orderBy:'conhecimento.descricao'">
 		<div class="row m-b-0">
@@ -177,7 +182,7 @@
 				{{item.conhecimento.descricao}} 
 				<span class="relative grey-text text-lighten-1" for="name_range_{{$index}}">
 					- 
-					<span ng-show="item.valor == 0">Não conheco / I don't know</span>
+					<span ng-show="item.valor == 0" translate="FORM_NAO_CONHECO"></span>
 					<span ng-show="item.valor == 1">Junior 1</span>
 					<span ng-show="item.valor == 2">Junior 2</span>
 					<span ng-show="item.valor == 3">Pleno 1</span>
@@ -202,16 +207,13 @@
 
 
 	<div class="row">
-		<div class="col s12">
-			Do you know any other language or framework that was not listed above? Tell us and evaluate yourself from 0 to 5. / Conhece mais alguma linguagem ou framework que não foi listado aqui em cima? Conte para nos e se auto avalie ainda de 0 a 5.
-		</div>
+		<div class="col s12" translate="FORM_Q5_OUTROS"></div>
 		<div class="input-field col s12 m-t-0">
         	<input 	type="text" class="validate" ng-model="objSelecionado.conhecimentoOutros">
       	</div>
 	</div>
 
- 	<blockquote>
-      Enter the link here CRUD (create, update, delete)- read information in the welcome document quoted in the form description./ Insira aqui o link do CRUD (create, update, delete)- ler informações no documento de Boas Vindas citado na descrição do formulário.
+ 	<blockquote translate="FORM_Q6_CRUD">
     </blockquote>
 
 	<div class="row">
@@ -221,8 +223,7 @@
       </div>
 	</div>
 
-    <blockquote>
-    Tutorials - Check out our tutorials and material explaining how the company works / Confira nossos tutoriais e material explicando como a empresa funciona.
+    <blockquote translate="FORM_Q7_TUTORIAS">
     </blockquote>
 
     <p class="h6">

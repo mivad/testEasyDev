@@ -32,6 +32,7 @@ namespace API.Models
         public string portfolio { get; set; }
         public string disponibilidadeTrabalho { get; set; }
         public string melhorHorarioTrabalho { get; set; }
+        public string linkCRUD { get; set; }
         public decimal? pretensaoSalario { get; set; }
 
         public bool horasAteQuatro { get; set; }

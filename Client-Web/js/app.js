@@ -1,4 +1,4 @@
-var easyDevApp = angular.module('EasyDevApp', ['ngRoute', 'ngAnimate', 'rzModule'])
+var easyDevApp = angular.module('EasyDevApp', ['ngRoute', 'ngAnimate', 'pascalprecht.translate'])
 
 .run(function() {
 
