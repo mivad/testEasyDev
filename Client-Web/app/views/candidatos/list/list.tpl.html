@@ -2,23 +2,30 @@
 	Candidatos
 </h5>
 
+
+
+<div class="row m-b-0" ng-enter="pesquisar()">
+  	<div class="input-field col s5">
+	    <input id="txtQueryNome" type="text" ng-model="query.nome">
+	    <label for="txtQueryNome" class="">Nome</label>
+  	</div>
+
+  	<div class="input-field col s4">
+	    <input id="txtQueryEmail" type="text" ng-model="query.email">
+	    <label for="txtQueryEmail" class="">Email</label>
+	</div>
+	<div class="input-field col s2 right-align">
+		<button class="btn waves-effect waves-light" ng-click="pesquisar()" name="action">BUSCAR
+  	</button>
+	</div>
+</div>
+
 <div class="progress" ng-show="loading.pesquisando">
   	<div class="indeterminate"></div>
 </div>
 
 <div ng-show="!loading.pesquisando && candidatos.length > 0">
-	<div class="row">
-	  	<div class="input-field col s6">
-		    <i class="material-icons prefix">search</i>
-		    <input id="txtQueryNome" type="text" ng-model="query.nome">
-		    <label for="txtQueryNome" class="">Nome</label>
-	  	</div>
-
-	  	<div class="input-field col s6">
-		    <input id="txtQueryEmail" type="text" ng-model="query.email">
-		    <label for="txtQueryEmail" class="">Email</label>
-	  	</div>
-
+	<div class="row" ng-enter="pesquisar()">
 
 		<table class="highlight">
 		    <thead>

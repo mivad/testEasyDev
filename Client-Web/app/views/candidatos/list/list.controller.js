@@ -3,6 +3,7 @@ easyDevApp.controller('CandidatosCtrl', function($scope, Candidato) {
 //Vars
 $scope.loading = {pesquisando: true, excluindo:false}
 $scope.candidatos = []
+$scope.query = {email:'', nome:''}
 
 //Functions
 $scope.pesquisar = pesquisar
@@ -11,13 +12,10 @@ $scope.excluir = excluir
 
 function pesquisar() {
 	$scope.loading.pesquisando = true;
-	$scope.candidatos = []
 
-	Candidato.getAll()
+	Candidato.getAll($scope.query)
 	.then(function (response) {
-		response.data.forEach(function (x) {
-			$scope.candidatos.push(x);
-		})
+			$scope.candidatos = response.data;
 	})
 	.catch(function (response) {
 	  M.toast({html: 'Erro:' + response.status})
