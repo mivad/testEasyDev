@@ -81,7 +81,12 @@ namespace API.Models
                 if (!string.IsNullOrEmpty(email))
                     objs = objs.Where(x => !string.IsNullOrEmpty(x.email) && x.email.IndexOf(email, StringComparison.OrdinalIgnoreCase) >= 0);
 
-                return objs;
+                return objs.Select(x => new
+                {
+                    id = x.id,
+                    nomeCompleto = x.nomeCompleto,
+                    email = x.email
+                });
             }
             catch (Exception)
             {
