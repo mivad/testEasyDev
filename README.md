@@ -1,5 +1,5 @@
 # testEasyDev
-CRED de teste para concorrer a vaga
+CRUD de teste para concorrer a vaga
 
 ### Tech
 
